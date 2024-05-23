@@ -1,6 +1,6 @@
-# Restaurant Review App
+# yelp Restaurant Review App Clone
 
-Welcome to the Restaurant Review App! This application allows users to browse, review, and rate restaurants. Users can create accounts, post reviews, add ratings, and browse through a comprehensive list of restaurants. It's designed to be intuitive, user-friendly, and accessible on multiple devices this application is a clone of the [yelp](yelp.com/writeareview) resturant review application.
+Welcome to the Restaurant Review App! This application allows users to browse, review, and rate restaurants. Users can create accounts, post reviews, add ratings, and browse through a comprehensive list of restaurants. It's designed to be intuitive, user-friendly, and accessible on multiple devices this application is a clone of the [yelp](https://yelp.com/writeareview) resturant review application.
 
 ## Features
 
@@ -123,11 +123,11 @@ We welcome contributions! Please fork the repository and create a pull request w
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://LICENSE) file for more details.
 
 ## Contact
 
-For any questions or support, please open an issue or contact us at [TaiwoMail](ajasataiwo45@gmail.com).
+For any questions or support, please open an issue or contact us at [TaiwoMail](https://ajasataiwo45@gmail.com).
 
 Happy reviewing!
 
