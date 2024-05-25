@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const NavBar = () => {
-    let history = useHistory(); 
+    const history = useHistory(); 
 
     const handleLogin = () => {
         validateLoginToken(history);
@@ -39,8 +39,8 @@ const NavBar = () => {
                     </div>
 
                     <div className='mr-4 hidden md:flex'>
-                        <Link to="/Signup">
-                            <button onClick={handleSignup} className="bg-[#d21313] text-white border-gray-300 border  font-semibold  py-3 px-5 rounded">
+                        <Link to="/signup">
+                            <button  className="bg-[#d21313] text-white border-gray-300 border  font-semibold  py-3 px-5 rounded">
                                 Sign Up
                             </button>
                         </Link>

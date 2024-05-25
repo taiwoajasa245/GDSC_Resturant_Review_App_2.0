@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Flower from "../assets/images/flower.png";
-import D_Logo from "../assets/images/logo_desktop.png";
+import Flower from "../../assets/images/flower.png";
+import D_Logo from "../../assets/images/logo_desktop.png";
+
+import FooterLinks from "./FooterLink";
 
 const Footer = () => {
-  const classN = "text-gray-500  hover:underline hover:text-blue-600 ";
+  const classN = "text-gray-500   hover:underline hover:text-blue-600 ";
 
   return (
     <>
@@ -111,11 +113,22 @@ const Footer = () => {
 
           <div className="md:hidden">
             <div>
-              <h2 className="font-bold ">Language</h2>
+              <h2 className="font-bold">Language</h2>
 
               <div className="flex flex-col items-start mt-4 space-y-4">
-                <a href="#" className={classN}>
-                  About us
+                <a
+                  href="#"
+                  className=" text-gray-500 flex items-center cursor-pointer mb-3  hover:underline hover:text-blue-600"
+                >
+                  English
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="20"
+                    viewBox="0 -960 960 960"
+                    width="20"
+                  >
+                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                  </svg>
                 </a>
               </div>
             </div>
@@ -131,86 +144,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className=" pt-5 text-blue-500 cursor-pointer lg:hidden ">
-            <div>
-              <ul className="">
-                <li className=" mobile-list-item__09f24__YxnZJ">
-                  <span className=" yelp-emotion-ex7geu">
-                    <div className=" yelp-emotion-y28ot8">
-                      <a href="/about" className="yelp-emotion-1jiih4y">
-                        About
-                      </a>
-                      .
-                    </div>
-                  </span>
-                </li>
-                <li className=" mobile-list-item__09f24__YxnZJ">
-                  <span className=" yelp-emotion-ex7geu">
-                    <div className=" yelp-emotion-y28ot8">
-                      <a
-                        href="https://blog.yelp.com/"
-                        className="yelp-emotion-1jiih4y"
-                      >
-                        Blog
-                      </a>
-                      .
-                    </div>
-                  </span>
-                </li>
-                <li className=" mobile-list-item__09f24__YxnZJ">
-                  <span className=" yelp-emotion-ex7geu">
-                    <div className=" yelp-emotion-y28ot8">
-                      <a
-                        href="https://www.yelp-support.com/"
-                        className="yelp-emotion-1jiih4y"
-                      >
-                        Support
-                      </a>
-                      .
-                    </div>
-                  </span>
-                </li>
-                <li className=" mobile-list-item__09f24__YxnZJ">
-                  <span className=" yelp-emotion-ex7geu">
-                    <div className=" yelp-emotion-y28ot8">
-                      <a href="/static?p=tos" className="yelp-emotion-1jiih4y">
-                        Terms
-                      </a>
-                    </div>
-                  </span>
-                </li>
-                <li className=" mobile-list-item__09f24__YxnZJ">
-                  <span className=" yelp-emotion-ex7geu">
-                    <div className=" yelp-emotion-y28ot8">
-                      <a
-                        href="/tos/privacy_policy"
-                        className="yelp-emotion-1jiih4y"
-                      >
-                        Privacy Policy
-                      </a>
-                      .
-                    </div>
-                  </span>
-                </li>
-                <li className=" mobile-list-item__09f24__YxnZJ">
-                  <span className=" yelp-emotion-h9c2fl">
-                    <div className=" yelp-emotion-ohs7lg">
-                      <a
-                        href="https://www.yelp-support.com/article/Your-Privacy-Choices?l=en_US"
-                        className="yelp-emotion-1jiih4y"
-                      >
-                        Your Privacy Choices
-                      </a>
-                      .
-                    </div>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <FooterLinks />
 
-          <div className=" mt-24 mb-10 ">
-            <p className=" lg:flex text-sm text-gray-500 sm:mt-0 ">
+          <div className=" mt-5 mb-10 ">
+            <p className=" md:flex text-sm text-gray-500 md:mt-0 ">
               Copyright © 2004–2024 Yelp Inc. Yelp,
               <div className="flex">
                 <img src={D_Logo} className="w-10" alt="Your Image" />,

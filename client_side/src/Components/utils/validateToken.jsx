@@ -11,14 +11,14 @@ export const validateToken = (history, redirectPath, fallbackPath) => {
       }
 
       try {
-        await axios.get(`${import.meta.env.VITE_SERVER_URL}/dashboard`, {
-          headers: {
-            Authorization: token,
-          },
-        });
+        // await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/auth/dashboard`, {
+        //   headers: {
+        //     Authorization: token,
+        //   },
+        // });
         history.push(redirectPath);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         history.push(fallbackPath);
       }
     };
@@ -28,9 +28,10 @@ export const validateToken = (history, redirectPath, fallbackPath) => {
 };
 
 export const validateSignupToken = (history) => {
-  validateToken(history, "/dashboard-panel", "/signup");
+  validateToken(history, "writea/dashboard-panel", "/signup");
 };
 
 export const validateLoginToken = (history) => {
   validateToken(history, "/dashboard-panel", "/login");
 };
+

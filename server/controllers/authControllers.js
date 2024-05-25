@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const generateJwtToken = require('../utils/token');
-// const sendEmail = require('../utils/sendEmail');
+const sendEmail = require('../configuration/mail');
+
 
 
 
@@ -57,7 +58,12 @@ const SignUP = async (req, res) => {
 
     const token = generateJwtToken(payload);
 
+    // send mail
+    const first_name = firstName;
+    const last_name = lastName;
+    // await sendEmail(email, 'Welcome Email', first_name, last_name);
 
+    // send response
     res.status(201).json({
       message: 'User registered successfully. Please check your email for verification',
       data: {
@@ -69,12 +75,6 @@ const SignUP = async (req, res) => {
       }
     });
 
-
-
-    // // Send verification email
-    // const message = `Hello ${firstName} + ${lastName} Welcome to Yelp `;
-
-    // await sendEmail(email, 'Email Verification', message);
 
   } catch (error) {
     console.error(error.message);
@@ -102,7 +102,6 @@ const LogIn = async (req, res) => {
     }
 
     // send the user token
-
     // set jwt payload
     const payload = {
       firstname: user.firstName,

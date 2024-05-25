@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const RecentlyVisited = () => {
   return (
-    <div className="w-full p-5 lg:pl-20 lg:mt-12">
+    <div className="w-full p-5 lg:pl-20 md:pl-10 lg:mt-12">
       <h1 className=" text-xl text-gray-800 font-bold pb-20">
         Visited one of these places recently?
       </h1>

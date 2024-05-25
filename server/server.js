@@ -4,6 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./configuration/db');
 const authRoutes = require('./routes/authRoute');
+const restaurantRoutes = require('./routes/restaurantRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const errorHandler = require('./utils/errorHandler');
 const app = express();
 
 
@@ -13,20 +16,15 @@ app.use(express.json());
 app.use(cors());
 
 
-const passport = require('passport');
-require('./configuration/passport'); // Adjust the path as necessary
-
-
-
-// Initialize passport
-app.use(passport.initialize());
-
 // Connect to database
 connectDB();
 
 // Routes
-app.use('/api/', authRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/restaurants', restaurantRoutes);
+app.use('/api/reviews', reviewRoutes);
 
+app.use(errorHandler);
 
 //The 404 Route (ALWAYS Keep this as the last route)
 app.get('*', function (req, res) {
@@ -44,7 +42,6 @@ app.get('*', function (req, res) {
     }
 
 });
-
 
 
 mongoose.connection.once('open', () => {

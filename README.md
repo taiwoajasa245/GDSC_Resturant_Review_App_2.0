@@ -81,6 +81,65 @@ Welcome to the Restaurant Review App! This application allows users to browse, r
 
 The backend server will run on `http://localhost:4000` and the frontend will run on `http://localhost:5173/writeareview`.
 
+## Project Structure
+
+      **Frontend**
+
+      ```
+      restaurant-review-app/
+      ├── public/
+      ├── src/
+      │   ├── api/
+      │   │   ├── auth.js
+      │   │   ├── restaurant.js
+      │   │   └── review.js
+      │   ├── components/
+      │   │   ├── Auth/
+      │   │   │   ├── Login.js
+      │   │   │   └── Register.js
+      │   │   ├── Restaurant/
+      │   │   │   ├── RestaurantList.js
+      │   │   │   ├── RestaurantItem.js
+      │   │   │   ├── AddRestaurant.js
+      │   │   │   └── RestaurantDetails.js
+      │   │   ├── Review/
+      │   │   │   ├── AddReview.js
+      │   │   │   └── ReviewList.js
+      │   │   ├── Layout/
+      │   │   │   ├── Header.js
+      │   │   │   └── Footer.js
+      │
+      
+      ```
+
+
+   **Backend**
+
+      ```
+      restaurant-review-app/
+      ├── config/
+      │   └── db.js
+      ├── controllers/
+      │   ├── authController.js
+      │   ├── reviewController.js
+      │   └── restaurantController.js
+      ├── models/
+      │   ├── User.js
+      │   ├── Restaurant.js
+      │   └── Review.js
+      ├── routes/
+      │   ├── authRoutes.js
+      │   ├── reviewRoutes.js
+      │   └── restaurantRoutes.js
+      ├── middleware/
+      │   └── authMiddleware.js
+      ├── utils/
+      │   └── errorHandler.js
+      ├── .env
+      └── server.js
+
+      ```
+
 ## Usage
 
 - **Sign Up/Log In**: Create an account or log in if you already have one.
@@ -117,9 +176,7 @@ We welcome contributions! Please fork the repository and create a pull request w
 
    ```
 
-
 5. **Create pull request**
-
 
 ## License
 
@@ -130,4 +187,3 @@ This project is licensed under the MIT License. See the [LICENSE](https://LICENS
 For any questions or support, please open an issue or contact us at [TaiwoMail](https://ajasataiwo45@gmail.com).
 
 Happy reviewing!
-
