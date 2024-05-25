@@ -40,7 +40,7 @@ const NavBar = () => {
 
                     <div className='mr-4 hidden md:flex'>
                         <Link to="/signup">
-                            <button  className="bg-[#d21313] text-white border-gray-300 border  font-semibold  py-3 px-5 rounded">
+                            <button onClick={handleSignup}  className="bg-[#d21313] text-white border-gray-300 border  font-semibold  py-3 px-5 rounded">
                                 Sign Up
                             </button>
                         </Link>

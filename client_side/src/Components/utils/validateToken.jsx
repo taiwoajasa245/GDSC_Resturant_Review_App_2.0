@@ -28,7 +28,7 @@ export const validateToken = (history, redirectPath, fallbackPath) => {
 };
 
 export const validateSignupToken = (history) => {
-  validateToken(history, "writea/dashboard-panel", "/signup");
+  validateToken(history, "/dashboard-panel", "/signup");
 };
 
 export const validateLoginToken = (history) => {
