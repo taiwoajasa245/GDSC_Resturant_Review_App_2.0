@@ -5,14 +5,14 @@ import Nav from "../NavBars/Nav";
 import Footer from "../Layout/Footer";
 import Google from "../../assets/images/google.svg";
 import Apple from "../../assets/images/apple.svg";
-import { validateSignupToken } from "../utils/validateToken";
+import { useValidateSignupToken } from "../utils/validateToken";
 import ModalBox from "../Layout/modalBox";
 import BirthdateSelector from "../Layout/BirthdateSelector";
 
 function SignUp() {
   const history = useHistory();
 
-  validateSignupToken(history);
+  useValidateSignupToken();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -47,7 +47,7 @@ function SignUp() {
       const response = await axios.post(`${URL}/api/auth/signup`, formData);
       const data = response.data.data;
       const token = data.token;
-      localStorage.setItem("token", token); 
+      localStorage.setItem("token", token);
 
       setMessage("Signup Successful");
       setShowModal(true);

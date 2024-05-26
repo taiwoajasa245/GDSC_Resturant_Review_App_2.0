@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import Google_Logo from "../../assets/images/google.svg";
 import Apple_Logo from "../../assets/images/apple.svg";
 import Nav from "../NavBars/Nav";
-import { validateLoginToken } from "../utils/validateToken";
+import { useValidateLoginToken } from "../utils/validateToken";
 import ModalBox from "../Layout/modalBox";
 import Footer from "../Layout/Footer";
 
@@ -24,7 +24,7 @@ function Login() {
   const [successImg, setSuccessImg] = useState("");
   const [errorImg, setErrorImg] = useState("");
 
-  validateLoginToken(history);
+  useValidateLoginToken();
 
   // listen for input values
   const handleChange = (e) => {

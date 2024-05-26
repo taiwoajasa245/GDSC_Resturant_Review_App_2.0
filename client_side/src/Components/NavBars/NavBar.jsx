@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Yelp_Logo from "../../assets/images/yelp_logo.svg"; 
-import { validateLoginToken, validateSignupToken } from "../utils/validateToken";
+import { useValidateLoginToken, useValidateSignupToken } from "../utils/validateToken";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
@@ -9,11 +9,11 @@ const NavBar = () => {
     const history = useHistory(); 
 
     const handleLogin = () => {
-        validateLoginToken(history);
+        useValidateLoginToken();
     };  
     
     const handleSignup = () => {
-        validateSignupToken(history);
+        useValidateSignupToken();
     };  
 
     return (

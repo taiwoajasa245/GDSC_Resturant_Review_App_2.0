@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-export const validateToken = (history, redirectPath, fallbackPath) => {
+const useValidateToken = (redirectPath, fallbackPath) => {
+  const history = useHistory();
+
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -10,15 +13,23 @@ export const validateToken = (history, redirectPath, fallbackPath) => {
         return;
       }
 
+      
       try {
-        // await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/auth/dashboard`, {
-        //   headers: {
-        //     Authorization: token,
-        //   },
-        // });
-        history.push(redirectPath);
+        const response = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}/api/auth/dashboard`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          history.push(redirectPath);
+        } else {
+          history.push(fallbackPath);
+        }
       } catch (error) {
-        // console.log(error);
         history.push(fallbackPath);
       }
     };
@@ -27,11 +38,14 @@ export const validateToken = (history, redirectPath, fallbackPath) => {
   }, [history, redirectPath, fallbackPath]);
 };
 
-export const validateSignupToken = (history) => {
-  validateToken(history, "/dashboard-panel", "/signup");
+export const useValidateSignupToken = () => {
+  useValidateToken("/dashboard-panel", "/signup");
 };
 
-export const validateLoginToken = (history) => {
-  validateToken(history, "/dashboard-panel", "/login");
+export const useValidateLoginToken = () => {
+  useValidateToken("/dashboard-panel", "/login");
 };
 
+export const useValidateHomeToken = () => {
+  useValidateToken("/dashboard-panel", "/");
+};
