@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios"; // Import axios for making HTTP requests
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, Navigate } from "react-router-dom";
+// import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Nav from "../NavBars/Nav";
 import Footer from "../Layout/Footer";
 import Google from "../../assets/images/google.svg";
 import Apple from "../../assets/images/apple.svg";
-import { useValidateSignupToken } from "../utils/validateToken";
 import ModalBox from "../Layout/modalBox";
 import BirthdateSelector from "../Layout/BirthdateSelector";
+import userSignUp from "../api/userSignup";
 
 function SignUp() {
-  const history = useHistory();
-
-  useValidateSignupToken();
-
+  const { loading, error, registerUser } = userSignUp();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,12 +22,10 @@ function SignUp() {
     day: "",
     year: "",
   });
-
   const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState("");
   const [successImg, setSuccessImg] = useState("");
   const [errorImg, setErrorImg] = useState("");
-
   const classX =
     "mt-2  px-3 py-2 bg-white border shadow-sm border-slate-700 placeholder-slate-400 focus:outline-none focus:border-sky-300  block w-full rounded-md sm:text-sm focus:ring-1";
   const URL = import.meta.env.VITE_SERVER_URL;
@@ -39,16 +35,10 @@ function SignUp() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.log(formData);
-      const response = await axios.post(`${URL}/api/auth/signup`, formData);
-      const data = response.data.data;
-      const token = data.token;
-      localStorage.setItem("token", token);
-
+      registerUser(formData);
       setMessage("Signup Successful");
       setShowModal(true);
       setSuccessImg(
@@ -91,30 +81,27 @@ function SignUp() {
         </svg>
       );
     } catch (error) {
-      if (error) {
-        setMessage("Error during SignUp contact the site admin");
-        setShowModal(true);
+      setMessage("Error during SignUp contact the site admin");
+      setShowModal(true);
 
-        setErrorImg(
-          <svg
-            className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-        );
-
-        history.push("/signup");
-      }
+      setErrorImg(
+        <svg
+          className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-400"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 20 20"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      );
+      <Navigate to={"/signup"} />;
     }
   };
 

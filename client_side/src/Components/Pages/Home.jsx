@@ -1,21 +1,13 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import NavBar from "../NavBars/NavBar";
 import HeaderImg from "../../assets/images/headerimg.svg";
 import RecentlyVisited from "../Layout/RecentlyVisited";
 import Footer from "../Layout/Footer";
 import SearchForm from "../Layout/SearchForm";
-import { useValidateHomeToken } from "../utils/validateToken";
 
 function Home() {
-  
-  // Lazy load the header image
-
-  // const HeaderImg = lazy(() => import("../../assets/images/headerimg.svg"));
-  
   const [loading, setLoading] = useState(true);
-  
-  // useValidateHomeToken();
 
   // Validate home token
   useEffect(() => {

@@ -65,14 +65,15 @@ const SignUP = async (req, res) => {
 
     // send response
     res.status(201).json({
+      status: 200,
       message: 'User registered successfully. Please check your email for verification',
-      data: {
+      user: {
         id: userSaved._id,
         firstName: userSaved.firstName,
         lastName: userSaved.lastName,
         email: userSaved.email,
-        token: "Bearer " + token
-      }
+      },
+      token: "Bearer " + token
     });
 
 
@@ -114,6 +115,12 @@ const LogIn = async (req, res) => {
     res.status(200).json({
       status: 200,
       message: "Logged in successfully!",
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      },
       token: "Bearer " + token
     });
 

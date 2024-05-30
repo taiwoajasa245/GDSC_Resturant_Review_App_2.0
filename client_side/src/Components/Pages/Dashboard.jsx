@@ -1,13 +1,14 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import Nav from "../NavBars/Nav";
-import Yelp_Logo from "../../assets/images/yelp_logo_dark_bg.png"; 
-import { useValidateLoginToken } from "../utils/validateToken";
+import React, { useState } from "react";
+import Yelp_Logo from "../../assets/images/yelp_logo_dark_bg.png";
 import Sidebar from "../Layout/SideBar";
+import { useAuth } from "../../Context/AuthContext";
 
 function Dashboard() {
-  useValidateLoginToken();
+  const { userData, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+  };
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDrop, setIsDrop] = useState(false);
@@ -50,7 +51,10 @@ function Dashboard() {
                 </svg>
               </button>
 
-              <a href="/" className="flex items-center justify-between  sm:w-[400px] lg:w-[800px] ms-2 md:me-24">
+              <a
+                href="/"
+                className="flex items-center justify-between  sm:w-[400px] lg:w-[800px] ms-2 md:me-24"
+              >
                 <div className="text-center w-[200px] sm:w-auto  flex justify-center">
                   <img
                     src={Yelp_Logo}
@@ -65,10 +69,9 @@ function Dashboard() {
             </div>
             <div className=" relative inline-block  items-center">
               <div className="flex items-center ms-3">
-
                 <div>
                   <button
-                  onClick={toggleDropbar}
+                    onClick={toggleDropbar}
                     type="button"
                     className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     aria-expanded="false"
@@ -84,7 +87,9 @@ function Dashboard() {
                 </div>
 
                 <div
-                  className={`z-50 absolute right-0  top-8   ${ isDrop ? '': ' hidden '} my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600`}
+                  className={`z-50 absolute right-0  top-8   ${
+                    isDrop ? "" : " hidden "
+                  } my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600`}
                   id="dropdown-user"
                 >
                   <div className="px-4 py-3" role="none">
@@ -129,7 +134,7 @@ function Dashboard() {
                         Earnings
                       </a>
                     </li>
-                    <li>
+                    <li onClick={handleLogout}>
                       <a
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -140,7 +145,6 @@ function Dashboard() {
                     </li>
                   </ul>
                 </div>
-
               </div>
             </div>
           </div>

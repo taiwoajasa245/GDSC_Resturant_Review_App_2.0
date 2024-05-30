@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import Google_Logo from "../../assets/images/google.svg";
 import Apple_Logo from "../../assets/images/apple.svg";
 import Nav from "../NavBars/Nav";
-import { useValidateLoginToken } from "../utils/validateToken";
 import ModalBox from "../Layout/modalBox";
 import Footer from "../Layout/Footer";
+import userLogin from "../api/userLogin";
+
 
 function Login() {
-  const URL = import.meta.env.VITE_SERVER_URL;
-  let history = useHistory();
+  const { loading, error, logUserIn } = userLogin();
+
   const classX =
     "mt-2  px-3 py-2 bg-white border shadow-sm border-slate-700 placeholder-slate-400 focus:outline-none focus:border-sky-300  block w-full max-w-xs rounded-md sm:text-sm focus:ring-1";
 
@@ -24,8 +24,6 @@ function Login() {
   const [successImg, setSuccessImg] = useState("");
   const [errorImg, setErrorImg] = useState("");
 
-  useValidateLoginToken();
-
   // listen for input values
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,15 +34,9 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${URL}/api/auth/login`, formData);
-      const data = response.data;
-
-      const token = data.token;
-      localStorage.setItem("token", token);
-
+      logUserIn(formData);
       setMessage(data.message);
       setShowModal(true);
-
       setSuccessImg(
         <svg
           fill="gray"
@@ -84,10 +76,8 @@ function Login() {
           </g>
         </svg>
       );
-
     } catch (error) {
       setMessage("Incorrect email or password");
-
       setErrorImg(
         <svg
           className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-400"
@@ -105,9 +95,8 @@ function Login() {
           />
         </svg>
       );
-
       setShowModal(true);
-      history.push("/login");
+      <Navigate to={"/login"} />;
     }
   };
 

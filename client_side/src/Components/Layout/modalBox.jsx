@@ -1,16 +1,28 @@
 // src/components/ModalBox.js
-import React from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useState } from "react";
+import { Navigate } from "react-router";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ModalBox({ isOpen, onClose, title, message, successImg, errorImg }) {
   if (!isOpen) return null;
 
-  let history = useHistory();
+  
+  const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const handleClick = () => {
-    onClose;
-    history.push("/dashboard-panel");
+    if (
+      message === "Error during SignUp contact the site admin" ||
+      message === "Incorrect email or password"
+    ) {
+      onClose();
+    } else {
+      setShouldNavigate(true);
+    }
   };
+
+  if (shouldNavigate) {
+    return <Navigate to="/dashboard-panel" />;
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-50">
